@@ -48,7 +48,7 @@ macro_rules! c_strs {
                 }
             }
 
-            res_vec.iter().map(|s: &String| CString::new(s.clone()).unwrap()).collect::<Vec<CString>>()
+            res_vec.iter().map(|s: &String| CString::new(s.as_str()).unwrap()).collect::<Vec<CString>>()
         }
     };
 }
