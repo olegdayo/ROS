@@ -13,24 +13,27 @@ macro_rules! c_strs {
 
             let mut res_vec = Vec::<String>::new();
             for elem in temp_vec {
-                if &elem == "." {
-                    match res_vec.last_mut() {
-                        Some(last) => {
-                            *last += &elem;
+                match elem.as_str() {
+                    "." | "," | ";" => {
+                        match res_vec.last_mut() {
+                            Some(last) => {
+                                *last += &elem;
+                            }
+    
+                            None => {
+                                res_vec.push(elem);
+                            }
                         }
-
-                        None => {
-                            res_vec.push(elem);
-                        }
+    
+                        continue;
                     }
-
-                    continue;
+                    _ => {}
                 }
 
                 match res_vec.last_mut() {
                     Some(last) => {
                         match *last.as_bytes().last().unwrap() as char {
-                            '-' | '.' => {
+                            '-' | '.' | ',' | ';' => {
                                 *last += &elem;
                             }
                             _ => {
