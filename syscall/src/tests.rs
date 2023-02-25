@@ -1,11 +1,11 @@
-use crate::c_strs;
+use crate::tty2cstr;
 
 use std::ffi::CString;
 
 
 #[test]
 fn empty_terminal() {
-    assert_eq!(Vec::<CString>::new(), c_strs![])
+    assert_eq!(Vec::<CString>::new(), tty2cstr![])
 }
 
 #[test]
@@ -29,7 +29,7 @@ fn full_terminal() {
     ];
     assert_eq!(
         expected,
-        c_strs![less access.log | grep -E "(WARN|ERROR|FATAL)" | awk "{print($2)}" | uniq -c | sort -nrk1],
+        tty2cstr![less access.log | grep -E "(WARN|ERROR|FATAL)" | awk "{print($2)}" | uniq -c | sort -nrk1],
     )
 }
 
@@ -54,6 +54,37 @@ fn spaces() {
     ];
     assert_eq!(
         expected,
-        c_strs![less access.log | grep -E "(WARN|ERROR|FATAL)" | awk "{print $2}" | uniq -c | sort -nrk1],
+        tty2cstr![less access.log | grep -E "(WARN|ERROR|FATAL)" | awk "{print $2}" | uniq -c | sort -nrk1],
+    )
+}
+
+#[test]
+fn dots() {
+    let expected = vec![
+        CString::new("less").unwrap(),
+        CString::new("access.log").unwrap(),
+        CString::new("&&").unwrap(),
+        CString::new("cd").unwrap(),
+        CString::new("..").unwrap(),
+    ];
+    assert_eq!(
+        expected,
+        tty2cstr![less access.log && cd ..],
+    )
+}
+
+#[test]
+fn dashes() {
+    let expected = vec![
+        CString::new("git").unwrap(),
+        CString::new("push").unwrap(),
+        CString::new("-f").unwrap(),
+        CString::new("&&").unwrap(),
+        CString::new("uniq").unwrap(),
+        CString::new("--count").unwrap(),
+    ];
+    assert_eq!(
+        expected,
+        tty2cstr![git push -f && uniq --count],
     )
 }
