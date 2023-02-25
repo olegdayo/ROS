@@ -9,20 +9,18 @@ use nix::sys::stat::Mode;
 use nix::sys::wait::waitpid;
 use nix::unistd::{close, dup2, execvp, fork, pipe, ForkResult};
 
-// Executed command: less access.log | grep -E '(WARN|ERROR|FATAL)' | awk '{print $2}' | uniq -c | sort -nrk1
+// Executed command: less access.log | grep -E '(WARN|ERROR|FATAL)' | awk '{print($2)}' | uniq -c | sort -nrk1
 
 fn main() {
-    // let args = c_strs![less access.log | grep -E '(WARN|ERROR|FATAL)' | awk '{print $2}' | uniq -c | sort -nrk1];
-    // println!("{:?}", args);
+    let args = c_strs![less access.log | grep -E "(WARN|ERROR|FATAL)" | awk "{print($2)}" | uniq -c | sort -nrk1];
+    println!("{:?}", args);
 
     match unsafe { fork() } {
         Ok(ForkResult::Child) => {
             let args = c_strs![less access.log];
-
             println!("{:?}", args);
 
             close(1).unwrap();
-
             open(
                 "errors.log",
                 OFlag::O_CREAT | OFlag::O_WRONLY,
