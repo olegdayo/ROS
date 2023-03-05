@@ -34,8 +34,8 @@ jobs:
       
       - name: Build
         run: cargo build --verbose --verbose
-        working-directory: syscall
+        working-directory: asm
         
       - name: Run tests
         run: cargo test --verbose --verbose
-        working-directory: syscall
+        working-directory: asm
