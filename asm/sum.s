@@ -2,6 +2,6 @@
 .globl _asum
 
 _asum:
-        add %rdi, %rsi
+        add %rdi, %rax
         add %rsi, %rax
         ret
