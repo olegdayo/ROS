@@ -27,13 +27,10 @@ jobs:
     
   asm:
 
-    runs-on: ubuntu-latest
+    runs-on: arch-latest
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Install GCC multilib
-        run: sudo apt install gcc-multilib
       
       - name: Build
         run: cargo build --verbose --verbose
