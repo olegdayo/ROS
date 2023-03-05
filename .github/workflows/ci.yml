@@ -37,5 +37,5 @@ jobs:
         working-directory: asm
         
       - name: Run tests
-        run: cargo test --verbose --verbose
+        run: cargo update && cargo test --verbose --verbose
         working-directory: asm
