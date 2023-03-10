@@ -1,8 +1,8 @@
 .intel_syntax
 .text
-.global _asum
+.global _aisum
 
-_asum:
+_aisum:
         add rax, rdi
         add rax, rsi
         ret

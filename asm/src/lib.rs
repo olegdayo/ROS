@@ -4,7 +4,8 @@ mod tests;
 use std::arch::asm;
 
 extern "C" {
-    pub fn asum(a: u64, b: u64) -> u64;
+    pub fn aasum(a: u64, b: u64) -> u64;
+    pub fn aisum(a: u64, b: u64) -> u64;
 }
 
 pub unsafe fn sum(first: u64, second: u64) -> u64 {
