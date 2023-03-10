@@ -1,7 +1,6 @@
 .text
-.globl _asum
-
+        .global _asum
 _asum:
-        add %rdi, %rax
-        add %rsi, %rax
+        add rax, rdi
+        add rax, rsi
         ret
