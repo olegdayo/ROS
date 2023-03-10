@@ -1,3 +1,0 @@
-[target.x86_64-unknown-linux-gnu.foo]
-rustc-link-lib = ["asm"]
-rustc-link-search = ["sum.s"]
