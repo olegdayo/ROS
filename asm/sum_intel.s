@@ -1,4 +1,4 @@
-.intel_syntax
+.intel_syntax noprefix
 .text
 .global _aisum
 
