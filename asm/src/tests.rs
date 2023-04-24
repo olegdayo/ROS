@@ -8,7 +8,6 @@ fn check_sum() {
     for i in MIN_NUM..MAX_NUM {
         for j in MIN_NUM..MAX_NUM {
             unsafe {
-                println!("{}, {}", i + j, sum(i, j));
                 assert!(i + j == sum(i, j));
             }
         }
