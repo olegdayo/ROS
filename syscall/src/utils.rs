@@ -1,9 +1,9 @@
 /// tty2cstr macro converts linux terminal command into vector of C strings
-/// 
+///
 /// Failures:
-/// 
+///
 /// ls .vscode => ["ls.vscode"]
-/// 
+///
 /// git push --set-upstream origin master => ["git", "push", "--set", "-upstream", "origin", "master"]
 #[macro_export]
 macro_rules! tty2cstr {
@@ -26,12 +26,12 @@ macro_rules! tty2cstr {
                             Some(last) => {
                                 *last += &elem;
                             }
-    
+
                             None => {
                                 res_vec.push(elem);
                             }
                         }
-    
+
                         continue;
                     }
                     _ => {}

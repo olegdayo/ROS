@@ -1,6 +1,6 @@
-mod utils;
 #[cfg(test)]
 mod tests;
+mod utils;
 
 extern crate nix;
 
@@ -9,7 +9,7 @@ use std::ffi::CString;
 use nix::fcntl::{open, OFlag};
 use nix::sys::stat::Mode;
 use nix::sys::wait::waitpid;
-use nix::unistd::{close, dup2, execvp, fork, pipe, ForkResult};
+use nix::unistd::{close, execvp, fork, ForkResult};
 
 // Executed command: less access.log | grep -E "(WARN|ERROR|FATAL)" | awk "{print($2)}" | uniq -c | sort -nrk1
 

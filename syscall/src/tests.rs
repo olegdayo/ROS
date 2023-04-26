@@ -2,7 +2,6 @@ use crate::tty2cstr;
 
 use std::ffi::CString;
 
-
 #[test]
 fn empty_terminal() {
     assert_eq!(Vec::<CString>::new(), tty2cstr![])
@@ -67,10 +66,7 @@ fn dots() {
         CString::new("cd").unwrap(),
         CString::new("..").unwrap(),
     ];
-    assert_eq!(
-        expected,
-        tty2cstr![less access.log && cd ..],
-    )
+    assert_eq!(expected, tty2cstr![less access.log && cd ..],)
 }
 
 #[test]
@@ -83,8 +79,5 @@ fn dashes() {
         CString::new("uniq").unwrap(),
         CString::new("--count").unwrap(),
     ];
-    assert_eq!(
-        expected,
-        tty2cstr![git push -f && uniq --count],
-    )
+    assert_eq!(expected, tty2cstr![git push -f && uniq --count],)
 }

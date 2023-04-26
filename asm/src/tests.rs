@@ -1,7 +1,7 @@
-use crate::{sum, aasum, aisum};
+use crate::{aasum, aisum, sum};
 
-static MIN_NUM: u64 = 0;
-static MAX_NUM: u64 = 100;
+const MIN_NUM: u64 = 0;
+const MAX_NUM: u64 = 100;
 
 #[test]
 fn check_sum() {
