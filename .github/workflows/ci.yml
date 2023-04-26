@@ -11,7 +11,6 @@ env:
 
 jobs:
   syscall:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,12 +20,11 @@ jobs:
         run: cargo build --verbose --verbose
         working-directory: syscall
         
-      - name: Run tests
+      - name: Run Tests
         run: cargo test --verbose --verbose
         working-directory: syscall
     
   asm:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -41,6 +39,16 @@ jobs:
         run: cargo build --verbose --verbose
         working-directory: asm
         
-      - name: Run tests
+      - name: Run Tests
         run: cargo test --verbose --verbose
         working-directory: asm
+
+  fmt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check Format
+        run: cargo fmt --all -- --check
+        working-directory: syscall
