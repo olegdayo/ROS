@@ -51,4 +51,3 @@ jobs:
 
       - name: Check Format
         run: cargo fmt --all -- --check
-        working-directory: syscall
